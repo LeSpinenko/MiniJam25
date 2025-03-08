@@ -1,29 +1,26 @@
 using UnityEngine;
+using TMPro;
+using System.Collections.Generic;
 
 public class EmailManager : MonoBehaviour
 {
-    public GameObject emailPrefab; // Drag EmailCard prefab here
-    public Transform emailHolder;  // Drag EmailCardHolder here
+    public GameObject emailPrefab;
+    public Transform emailHolder;
+    public EmailDatabase emailDatabase; // Reference to the database
+    private EmailData emailData;
 
     public void SpawnNewEmail()
     {
-        // Ensure references are not lost
-        if (emailPrefab == null)
+        emailData = emailDatabase.GetRandomEmail();
+
+        if (emailPrefab == null || emailHolder == null)
         {
-            Debug.LogError("❌ EmailManager: emailPrefab is missing! Reassign it in the Inspector.");
+            Debug.LogError("❌ EmailManager: Missing prefab or parent object!");
             return;
         }
 
-        if (emailHolder == null)
-        {
-            Debug.LogError("❌ EmailManager: emailHolder is missing! Reassign it in the Inspector.");
-            return;
-        }
-
-        // Spawn new email card
+        // Pick a random email from the database
         GameObject newEmail = Instantiate(emailPrefab, emailHolder);
-
-        // Ensure correct position inside the holder
         RectTransform rectTransform = newEmail.GetComponent<RectTransform>();
         if (rectTransform != null)
         {
@@ -31,13 +28,18 @@ public class EmailManager : MonoBehaviour
             rectTransform.localPosition = Vector3.zero;
         }
 
-        // Reset CanvasGroup Alpha to make it visible
-        CanvasGroup canvasGroup = newEmail.GetComponent<CanvasGroup>();
-        if (canvasGroup != null)
-        {
-            canvasGroup.alpha = 1;
-        }
+        // Set email text
+        newEmail.transform.Find("CardTitle").GetComponent<TextMeshProUGUI>().text = emailData.title;
+        newEmail.transform.Find("EmailBody").GetComponent<TextMeshProUGUI>().text = emailData.body;
 
-        Debug.Log("✅ New email spawned correctly inside EmailCardHolder!");
+        // Attach EmailSwipe script and pass email data
+        EmailSwipe swipeScript = newEmail.GetComponent<EmailSwipe>();
+        swipeScript.SetEmailData(emailData);
+
+        Debug.Log($"✅ New email spawned: {emailData.title}");
+    }
+
+    void Start(){
+        SpawnNewEmail();
     }
 }

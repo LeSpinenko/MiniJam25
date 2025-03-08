@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86a5c5638586e844aa994b815fb2928, type: 3}
+  m_Name: EmailDatabase
+  m_EditorClassIdentifier: 
+  emails:
+  - title: Size Matter Kingdom
+    body: At size matter Kingdom, we think your ego should be restore.
+    isGood: 1
+    moneyChange: 0
+    fireRateChange: 0.2
+  - title: North VPN Republic
+    body: We propose you a partnership to promote our useless privacy service, we
+      pay good money
+    isGood: 1
+    moneyChange: 200
+    fireRateChange: 0
+  - title: Ulagudu Prince Legacy
+    body: The prince of Ulagudu has died, he has big money, if you want to inherit
+      just send 200$
+    isGood: 0
+    moneyChange: -200
+    fireRateChange: 0
+  - title: 'Cold water '
+    body: PP go small
+    isGood: 0
+    moneyChange: 0
+    fireRateChange: -0.2

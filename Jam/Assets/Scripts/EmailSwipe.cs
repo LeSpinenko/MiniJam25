@@ -8,10 +8,20 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private Vector3 dragStartPos;
     public float swipeThreshold = 200f;
     public float returnSpeed = 5f;
+    private EmailData emailData;
 
     private void Start()
     {
         startPos = transform.position; // Save original position
+    }
+
+    public void SetEmailData(EmailData data)
+    {
+        emailData = data;
+        if (emailData.title == null)
+        {
+            Debug.LogError("❌ EmailSwipe: emailData is NULL when setting email!");
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -21,31 +31,27 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        float newX = eventData.position.x; // Get new position based on drag
+        float newX = eventData.position.x;
 
-        // Define movement limits based on background size (960)
-        float leftLimit = startPos.x - 225;  
-        float rightLimit = startPos.x + 225; 
+        float leftLimit = startPos.x - 225;
+        float rightLimit = startPos.x + 225;
 
-        // Clamp position so it doesn't go outside the background
         newX = Mathf.Clamp(newX, leftLimit, rightLimit);
 
-        // Apply the limited movement
         transform.position = new Vector3(newX, startPos.y, startPos.z);
     }
 
-
     public void OnEndDrag(PointerEventData eventData)
     {
-        float swipeDistance = transform.position.x - startPos.x; // Measure from original position
+        float swipeDistance = transform.position.x - startPos.x;
 
-        if (Mathf.Abs(swipeDistance) >= swipeThreshold) // If moved beyond threshold
+        if (Mathf.Abs(swipeDistance) >= swipeThreshold)
         {
-            if (swipeDistance > 0) // Right swipe
+            if (swipeDistance > 0)
             {
                 AcceptEmail();
             }
-            else // Left swipe
+            else
             {
                 DeclineEmail();
             }
@@ -56,17 +62,38 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         }
     }
 
-
-    private void AcceptEmail()
+    public void AcceptEmail()
     {
-        Debug.Log("Email Accepted!");
-        StartCoroutine(FadeAndDestroy()); // Start fade-out effect
+        if (emailData == null)
+        {
+            Debug.LogError("❌ EmailSwipe: emailData is NULL in AcceptEmail()!");
+            return;
+        }
+
+        Debug.Log($"✅ Email Accepted: {emailData.title}");
+
+        /*if (Player.Instance != null)
+        {
+            Player.Instance.ChangeMoney(emailData.moneyChange);
+            Player.Instance.ChangeFireRate(emailData.fireRateChange);
+        }
+        else
+        {
+            Debug.LogError("❌ Player instance not found!");
+        }*/
+
+        Destroy(gameObject);
     }
 
-    private void DeclineEmail()
+    public void DeclineEmail()
     {
-        Debug.Log("Email Declined!");
-        StartCoroutine(FadeAndDestroy()); // Start fade-out effect
+        if (emailData == null)
+        {
+            Debug.LogError("❌ EmailSwipe: emailData is NULL in DeclineEmail()!");
+            return;
+        }
+
+        Destroy(gameObject);
     }
 
     private IEnumerator FadeAndDestroy()
@@ -74,10 +101,10 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         CanvasGroup canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null)
         {
-            canvasGroup = gameObject.AddComponent<CanvasGroup>(); // Add CanvasGroup if missing
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
 
-        float fadeDuration = 0.5f; // Time to fade out
+        float fadeDuration = 0.5f;
         float time = 0;
 
         while (time < fadeDuration)
@@ -88,29 +115,25 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         }
 
         canvasGroup.alpha = 0;
-        GameObject.FindObjectOfType<EmailManager>().SpawnNewEmail();
         Destroy(gameObject);
-
     }
-
 
     private void ResetPosition()
     {
-        StopAllCoroutines(); // Stop any existing movement
+        StopAllCoroutines();
         StartCoroutine(SmoothReturn());
     }
 
     private IEnumerator SmoothReturn()
     {
         float time = 0;
-        Vector3 startPos = transform.position;
-        while (time < 0.5f) // Adjust this duration if needed
+        Vector3 currentPos = transform.position;
+        while (time < 0.5f)
         {
-            transform.position = Vector3.Lerp(startPos, this.startPos, time / 0.5f);
+            transform.position = Vector3.Lerp(currentPos, this.startPos, time / 0.5f);
             time += Time.deltaTime;
             yield return null;
         }
-    transform.position = this.startPos; // Ensure it ends at the exact original position
-}
-
+        transform.position = this.startPos;
+    }
 }
