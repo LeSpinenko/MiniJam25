@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    GameObject[] enemies;
+    public GameObject[] enemies;
 
     public Transform target;
     public Transform partToRotate;
@@ -32,10 +32,7 @@ public class Turret : MonoBehaviour
         {
             return;
         }
-        Vector3 dir = target.position - transform.position;
-        Quaternion lookRot = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRot,Time.deltaTime * turnSpeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        RotateTurret();
 
         if (fireCountdown <= 0f)
         {
@@ -55,17 +52,33 @@ public class Turret : MonoBehaviour
         float shortestDistance = Mathf.Infinity;
         foreach (GameObject enemy in enemies)
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
+            Enemy myEnemy = enemy.GetComponent<Enemy>();
+            
+            if (myEnemy.isEnemy == true)
             {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
+                Debug.Log(myEnemy.name);
+                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distanceToEnemy < shortestDistance)
+                {
+                    shortestDistance = distanceToEnemy;
+                    nearestEnemy = enemy;
+                }
             }
+            else
+            {
+                nearestEnemy = null;
+            }
+            
         }
+
 
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
+        }
+        else
+        {
+            target = null;
         }
     }
 
@@ -77,5 +90,13 @@ public class Turret : MonoBehaviour
         {
             bullet.Seek(target);
         }
+    }
+
+    private void RotateTurret()
+    {
+        Vector3 dir = target.position - transform.position;
+        Quaternion lookRot = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRot, Time.deltaTime * turnSpeed).eulerAngles;
+        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 }
