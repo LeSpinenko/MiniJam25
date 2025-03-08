@@ -7,9 +7,12 @@ public class Enemy : MonoBehaviour
 {
     private float health;
     public float maxHealth = 100;
+
+    public bool isEnemy;
     // Start is called before the first frame update
     void Start()
     {
+        //isEnemy = true;
         health = maxHealth;
     }
 
