@@ -24,4 +24,13 @@ public class CanvaManager : MonoBehaviour
             }
         }
     }
+
+    // New method to switch to the next canvas
+    public void SwitchToCanvas(int canvasIndex)
+    {
+        if (canvasIndex >= 0 && canvasIndex < canvasList.Count)
+        {
+            SelectCanvas(canvasList[canvasIndex]);
+        }
+    }
 }
