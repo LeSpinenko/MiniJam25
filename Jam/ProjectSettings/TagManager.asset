@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - People
+  - Marchand
   layers:
   - Default
   - TransparentFX

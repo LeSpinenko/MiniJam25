@@ -11,7 +11,10 @@ public class Enemy : MonoBehaviour
     private Vector3 castlePos = new Vector3(0f,2f,0f);
     public float moveSpeed = 2f;
 
-    public bool isEnemy;
+    public bool isGood = true;
+    public bool hasTraded = false;
+
+    private EmailData emailData;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +25,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveEnemies();
+        if((isGood && !hasTraded) || !isGood)
+        {
+            MoveEnemiesToCastle();
+        }
+        else
+        {
+            MoveAway();
+        }
     }
 
     public void TakeDamage(float damage)
@@ -34,7 +44,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void MoveEnemies()
+    private void MoveEnemiesToCastle()
     {
         Vector3 dir = castlePos - transform.position;
         float distanceThisFrame = moveSpeed * Time.deltaTime;
@@ -48,9 +58,24 @@ public class Enemy : MonoBehaviour
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
     }
 
+    private void MoveAway()
+    {
+        Vector3 dir = transform.position - castlePos;
+        float distanceThisFrame = moveSpeed * Time.deltaTime;
+        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+        Destroy(gameObject,20f);
+    }
+
     private void Scam()
     {
         Destroy(gameObject);
         //Debug.Log("You got scammed sucker");
+    }
+
+    public void UpdateEmailData(EmailData _emailData)
+    {
+        emailData = _emailData;
+        hasTraded = emailData.hasTraded;
+        isGood = emailData.isGood;
     }
 }

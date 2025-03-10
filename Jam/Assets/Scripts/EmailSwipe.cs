@@ -9,15 +9,17 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public float swipeThreshold = 200f;
     public float returnSpeed = 5f;
     private EmailData emailData;
+    private Enemy myEnemy;
 
     private void Start()
     {
         startPos = transform.position; // Save original position
     }
 
-    public void SetEmailData(EmailData data)
+    public void SetEmailData(EmailData data ,Enemy enemy)
     {
         emailData = data;
+        myEnemy = enemy;
         if (emailData.title == null)
         {
             Debug.LogError("❌ EmailSwipe: emailData is NULL when setting email!");
@@ -81,7 +83,9 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         {
             Debug.LogError("❌ Player instance not found!");
         }*/
-
+        emailData.isGood = true;
+        emailData.hasTraded = true;
+        myEnemy.UpdateEmailData(emailData);
         Destroy(gameObject);
     }
 
@@ -92,7 +96,9 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             Debug.LogError("❌ EmailSwipe: emailData is NULL in DeclineEmail()!");
             return;
         }
-
+        emailData.isGood = false;
+        emailData.hasTraded = true;
+        myEnemy.UpdateEmailData(emailData);
         Destroy(gameObject);
     }
 

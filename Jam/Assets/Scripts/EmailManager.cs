@@ -8,8 +8,7 @@ public class EmailManager : MonoBehaviour
     public Transform emailHolder;
     public EmailDatabase emailDatabase; // Reference to the database
     private EmailData emailData;
-
-    public void SpawnNewEmail()
+    public void SpawnNewEmail(Enemy enemy)
     {
         emailData = emailDatabase.GetRandomEmail();
 
@@ -34,12 +33,12 @@ public class EmailManager : MonoBehaviour
 
         // Attach EmailSwipe script and pass email data
         EmailSwipe swipeScript = newEmail.GetComponent<EmailSwipe>();
-        swipeScript.SetEmailData(emailData);
+        swipeScript.SetEmailData(emailData, enemy);
 
         Debug.Log($"✅ New email spawned: {emailData.title}");
     }
 
     void Start(){
-        SpawnNewEmail();
+
     }
 }

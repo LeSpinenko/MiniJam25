@@ -10,7 +10,7 @@ public class Turret : MonoBehaviour
     public Transform partToRotate;
 
     public float turnSpeed;
-    public string peopleTag = "People";
+    public string peopleTag = "Marchand";
     public float fireRate = 1f;
     public float range;
 
@@ -54,8 +54,9 @@ public class Turret : MonoBehaviour
         {
             Enemy myEnemy = enemy.GetComponent<Enemy>();
             
-            if (myEnemy.isEnemy == true)
+            if (myEnemy.isGood == false)
             {
+                Debug.Log("TEST 1");
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distanceToEnemy < shortestDistance)
                 {

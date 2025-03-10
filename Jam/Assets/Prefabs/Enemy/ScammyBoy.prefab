@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7275744094424069556}
   m_Layer: 0
   m_Name: ScammyBoy
-  m_TagString: People
+  m_TagString: Marchand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   moveSpeed: 2
-  isEnemy: 1
+  isGood: 1
 --- !u!1 &4012848596256174155
 GameObject:
   m_ObjectHideFlags: 0
