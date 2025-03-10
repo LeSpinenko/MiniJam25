@@ -82,6 +82,6 @@ public class Enemy : MonoBehaviour
             turret.playerReference.GetScam(moneyScam);
         }
         Destroy(gameObject);
-        Destroy(attachedMail);
+        attachedMail.GetComponent<EmailSwipe>().DestroyMail();
     }
 }

@@ -87,7 +87,8 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         emailData.isGood = true;
         emailData.hasTraded = true;
         myEnemy.UpdateEmailData(emailData, gameObject);
-        Destroy(gameObject);
+        StartCoroutine(FadeAndDestroy());
+        //Destroy(gameObject);
     }
 
     public void DeclineEmail()
@@ -100,7 +101,8 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         emailData.isGood = false;
         emailData.hasTraded = true;
         myEnemy.UpdateEmailData(emailData, gameObject);
-        Destroy(gameObject);
+        StartCoroutine(FadeAndDestroy());
+        //Destroy(gameObject);
     }
 
     private IEnumerator FadeAndDestroy()
@@ -123,6 +125,11 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
         canvasGroup.alpha = 0;
         Destroy(gameObject);
+    }
+
+    public void DestroyMail()
+    {
+        StartCoroutine(FadeAndDestroy());
     }
 
     private void ResetPosition()
