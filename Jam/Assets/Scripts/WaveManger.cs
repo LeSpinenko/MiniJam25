@@ -20,9 +20,8 @@ public class WaveManger : MonoBehaviour
         minSpawnTime = 0.1f;
         cooldownReducer = 0.1f;
 
-        //emailManager = GetComponent<EmailManager>();
         StartCoroutine(ExecuteEveryTenSeconds());
-        //StartCoroutine(ChangeCoolDown());
+        StartCoroutine(ChangeCoolDown());
     }
 
     // Update is called once per frame

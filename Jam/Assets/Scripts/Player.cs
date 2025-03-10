@@ -50,9 +50,9 @@ public class Player : MonoBehaviour
             fireRateText.text = "Fire Rate: " + turretFireRate.ToString("F1");
     }
 
-    public void GetScam(int scamMoney)
+    public void GetScam(int scamAmount)
     {
-        money -= scamMoney;
+        money -= scamAmount;
         UpdateUI();
         Debug.Log("You got scammed sucker");
     }

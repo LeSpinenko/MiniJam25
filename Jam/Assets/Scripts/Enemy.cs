@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     private float health;
     public float maxHealth = 100f;
     //position du chateau
-    private Vector3 castlePos = new Vector3(0f,2f,0f);
+    private Transform castlePos;
     public float moveSpeed = 2f;
 
     public bool isGood = true;
@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     {
         //isEnemy = true;
         health = maxHealth;
+        castlePos = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -48,14 +49,14 @@ public class Enemy : MonoBehaviour
 
     private void MoveEnemiesToCastle()
     {
-        Vector3 dir = castlePos - transform.position;
+        Vector3 dir = castlePos.transform.position - transform.position;
         float distanceThisFrame = moveSpeed * Time.deltaTime;
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
     }
 
     private void MoveAway()
     {
-        Vector3 dir = transform.position - castlePos;
+        Vector3 dir = transform.position - castlePos.transform.position;
         float distanceThisFrame = moveSpeed * Time.deltaTime;
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
         Destroy(gameObject,20f);
