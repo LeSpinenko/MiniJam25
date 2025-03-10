@@ -20,6 +20,7 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         emailData = data;
         myEnemy = enemy;
+        myEnemy.UpdateEmailData(emailData, this.gameObject);
         if (emailData.title == null)
         {
             Debug.LogError("❌ EmailSwipe: emailData is NULL when setting email!");
@@ -85,7 +86,7 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         }*/
         emailData.isGood = true;
         emailData.hasTraded = true;
-        myEnemy.UpdateEmailData(emailData);
+        myEnemy.UpdateEmailData(emailData, gameObject);
         Destroy(gameObject);
     }
 
@@ -98,7 +99,7 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         }
         emailData.isGood = false;
         emailData.hasTraded = true;
-        myEnemy.UpdateEmailData(emailData);
+        myEnemy.UpdateEmailData(emailData, gameObject);
         Destroy(gameObject);
     }
 

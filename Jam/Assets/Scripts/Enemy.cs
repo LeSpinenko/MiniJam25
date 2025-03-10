@@ -17,12 +17,12 @@ public class Enemy : MonoBehaviour
     public int moneyScam;
 
     private EmailData emailData;
+    private GameObject attachedMail;
     // Start is called before the first frame update
     void Start()
     {
         //isEnemy = true;
         health = maxHealth;
-        castlePos = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -47,6 +47,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void Seek (Transform _target)
+    {
+        castlePos = _target;
+    }
+
     private void MoveEnemiesToCastle()
     {
         Vector3 dir = castlePos.transform.position - transform.position;
@@ -62,9 +67,10 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject,20f);
     }
 
-    public void UpdateEmailData(EmailData _emailData)
+    public void UpdateEmailData(EmailData _emailData, GameObject _emailSwipe)
     {
         emailData = _emailData;
+        attachedMail = _emailSwipe;
         hasTraded = emailData.hasTraded;
         isGood = emailData.isGood;
     }
@@ -76,5 +82,6 @@ public class Enemy : MonoBehaviour
             turret.playerReference.GetScam(moneyScam);
         }
         Destroy(gameObject);
+        Destroy(attachedMail);
     }
 }

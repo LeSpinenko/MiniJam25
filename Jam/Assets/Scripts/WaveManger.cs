@@ -9,6 +9,7 @@ public class WaveManger : MonoBehaviour
     public float cooldownReducer;
     public float minSpawnTime;
     public float radius;
+    private Transform castlePos;
 
     public EmailManager emailManager;
 
@@ -16,6 +17,7 @@ public class WaveManger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        castlePos = GameObject.FindGameObjectWithTag("Player").transform;
         spawnCooldown = 10f;
         minSpawnTime = 0.1f;
         cooldownReducer = 0.1f;
@@ -35,12 +37,13 @@ public class WaveManger : MonoBehaviour
        Vector3 spawnPosition = RandomSpawn() + Vector3.up * 2;
        GameObject marchand = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
        Enemy myEnemy = marchand.GetComponent<Enemy>();
+       myEnemy.Seek(castlePos);
        emailManager.SpawnNewEmail(myEnemy); 
     }
 
     private Vector3 RandomSpawn()
     {
-        Vector3 randomSpawn = new Vector3(Random.Range(-1f,1f),0, Random.Range(-1f, 1f)).normalized * radius;
+        Vector3 randomSpawn = new Vector3(Random.Range(-1f,1f),0, Random.Range(-1f, 1f)).normalized * radius + castlePos.position;
         return randomSpawn;
     }
 
@@ -53,7 +56,7 @@ public class WaveManger : MonoBehaviour
         }
     }
 
-        IEnumerator ChangeCoolDown()
+    IEnumerator ChangeCoolDown()
     {
         while (true)
         {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class Player : MonoBehaviour
 
     public int money = 0;
     public float turretFireRate = 1.0f;
+    public float incomeCooldown = 2f;
+    public int incomeAmount = 2;
 
     public TextMeshProUGUI moneyText; // Updated to TextMeshProUGUI
     public TextMeshProUGUI fireRateText; // Updated to TextMeshProUGUI
@@ -26,6 +29,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         UpdateUI();
+        StartCoroutine(PassiveIncome());
     }
 
     public void ChangeMoney(int amount)
@@ -55,5 +59,15 @@ public class Player : MonoBehaviour
         money -= scamAmount;
         UpdateUI();
         Debug.Log("You got scammed sucker");
+    }
+
+    IEnumerator PassiveIncome()
+    {
+        while (true)
+        {
+            money += incomeAmount;
+            UpdateUI();
+            yield return new WaitForSeconds(incomeCooldown);
+        }
     }
 }
