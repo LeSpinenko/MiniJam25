@@ -19,6 +19,8 @@ public class Turret : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
 
+    public Player playerReference;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +58,6 @@ public class Turret : MonoBehaviour
             
             if (myEnemy.isGood == false)
             {
-                Debug.Log("TEST 1");
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distanceToEnemy < shortestDistance)
                 {
@@ -90,7 +91,6 @@ public class Turret : MonoBehaviour
         {
             bullet.Seek(target);
         }
-        Debug.Log("Shoot");
     }
 
     private void RotateTurret()

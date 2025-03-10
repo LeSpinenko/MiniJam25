@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     public bool isGood = true;
     public bool hasTraded = false;
 
+    public int moneyScam;
+
     private EmailData emailData;
     // Start is called before the first frame update
     void Start()
@@ -48,13 +50,6 @@ public class Enemy : MonoBehaviour
     {
         Vector3 dir = castlePos - transform.position;
         float distanceThisFrame = moveSpeed * Time.deltaTime;
-
-        if (dir.magnitude <= distanceThisFrame)
-        {
-            Scam();
-            return;
-        }
-
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
     }
 
@@ -66,16 +61,19 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject,20f);
     }
 
-    private void Scam()
-    {
-        Destroy(gameObject);
-        //Debug.Log("You got scammed sucker");
-    }
-
     public void UpdateEmailData(EmailData _emailData)
     {
         emailData = _emailData;
         hasTraded = emailData.hasTraded;
         isGood = emailData.isGood;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")){
+            Turret turret = other.gameObject.GetComponent<Turret>();
+            turret.playerReference.GetScam(moneyScam);
+        }
+        Destroy(gameObject);
     }
 }
