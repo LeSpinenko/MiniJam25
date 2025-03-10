@@ -10,7 +10,7 @@ public class Turret : MonoBehaviour
     public Transform partToRotate;
 
     public float turnSpeed;
-    public string enemyTag = "Enemy";
+    public string peopleTag = "People";
     public float fireRate = 1f;
     public float range;
 
@@ -47,7 +47,7 @@ public class Turret : MonoBehaviour
 
     private void GetEnemies()
     {
-        enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        enemies = GameObject.FindGameObjectsWithTag(peopleTag);
         GameObject nearestEnemy = null;
         float shortestDistance = Mathf.Infinity;
         foreach (GameObject enemy in enemies)
@@ -56,7 +56,6 @@ public class Turret : MonoBehaviour
             
             if (myEnemy.isEnemy == true)
             {
-                Debug.Log(myEnemy.name);
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distanceToEnemy < shortestDistance)
                 {
@@ -90,6 +89,7 @@ public class Turret : MonoBehaviour
         {
             bullet.Seek(target);
         }
+        Debug.Log("Shoot");
     }
 
     private void RotateTurret()
