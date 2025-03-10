@@ -1820,6 +1820,7 @@ MonoBehaviour:
     type: 3}
   emailHolder: {fileID: 400496634}
   emailDatabase: {fileID: 11400000, guid: f5b536f001180d9429f98e7212f8f2ea, type: 2}
+  player: {fileID: 1499502715}
 --- !u!1 &1499502714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1852,6 +1853,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 50
   turretFireRate: 1
+  incomeCooldown: 2
+  incomeAmount: 2
   moneyText: {fileID: 1363066935}
   fireRateText: {fileID: 0}
 --- !u!4 &1499502716

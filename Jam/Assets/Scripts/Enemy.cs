@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
 
     public int moneyScam;
 
-    private EmailData emailData;
     private GameObject attachedMail;
     // Start is called before the first frame update
     void Start()
@@ -67,12 +66,13 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject,20f);
     }
 
-    public void UpdateEmailData(EmailData _emailData, GameObject _emailSwipe)
+    public void UpdateTradeStatus(bool _isGood,bool _hasTraded, GameObject _emailSwipe)
     {
-        emailData = _emailData;
+
+        isGood = _isGood;
+        hasTraded = _hasTraded;
         attachedMail = _emailSwipe;
-        hasTraded = emailData.hasTraded;
-        isGood = emailData.isGood;
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -80,8 +80,9 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player")){
             Turret turret = other.gameObject.GetComponent<Turret>();
             turret.playerReference.GetScam(moneyScam);
+            attachedMail.GetComponent<EmailSwipe>().DestroyMail();
+            Destroy(gameObject);           
         }
-        Destroy(gameObject);
-        attachedMail.GetComponent<EmailSwipe>().DestroyMail();
+        
     }
 }

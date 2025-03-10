@@ -17,25 +17,25 @@ MonoBehaviour:
     body: At size matter Kingdom, we think your ego should be restore.
     isGood: 1
     hasTraded: 0
-    moneyChange: 0
+    moneyChange: 5
     fireRateChange: 0.2
   - title: North VPN Republic
     body: We propose you a partnership to promote our useless privacy service, we
       pay good money
     isGood: 1
     hasTraded: 0
-    moneyChange: 200
+    moneyChange: 20
     fireRateChange: 0
   - title: Ulagudu Prince Legacy
     body: The prince of Ulagudu has died, he has big money, if you want to inherit
       just send 200$
     isGood: 1
     hasTraded: 0
-    moneyChange: -200
+    moneyChange: -30
     fireRateChange: 0
   - title: 'Cold water '
     body: PP go small
     isGood: 1
     hasTraded: 0
-    moneyChange: 0
+    moneyChange: 5
     fireRateChange: -0.2

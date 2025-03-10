@@ -20,7 +20,7 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         emailData = data;
         myEnemy = enemy;
-        myEnemy.UpdateEmailData(emailData, this.gameObject);
+        myEnemy.UpdateTradeStatus(true, false, this.gameObject);
         if (emailData.title == null)
         {
             Debug.LogError("❌ EmailSwipe: emailData is NULL when setting email!");
@@ -72,23 +72,21 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             Debug.LogError("❌ EmailSwipe: emailData is NULL in AcceptEmail()!");
             return;
         }
+        //Trading
 
         Debug.Log($"✅ Email Accepted: {emailData.title}");
 
-        /*if (Player.Instance != null)
+        if (Player.Instance != null)
         {
-            Player.Instance.ChangeMoney(emailData.moneyChange);
-            Player.Instance.ChangeFireRate(emailData.fireRateChange);
+            Player.Instance.TradeWithPlayer(emailData);
         }
         else
         {
             Debug.LogError("❌ Player instance not found!");
-        }*/
-        emailData.isGood = true;
-        emailData.hasTraded = true;
-        myEnemy.UpdateEmailData(emailData, gameObject);
+        }
+
+        myEnemy.UpdateTradeStatus(true, true, gameObject);
         StartCoroutine(FadeAndDestroy());
-        //Destroy(gameObject);
     }
 
     public void DeclineEmail()
@@ -98,11 +96,10 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             Debug.LogError("❌ EmailSwipe: emailData is NULL in DeclineEmail()!");
             return;
         }
-        emailData.isGood = false;
-        emailData.hasTraded = true;
-        myEnemy.UpdateEmailData(emailData, gameObject);
+
+        myEnemy.UpdateTradeStatus(false, false, gameObject);
         StartCoroutine(FadeAndDestroy());
-        //Destroy(gameObject);
+
     }
 
     private IEnumerator FadeAndDestroy()

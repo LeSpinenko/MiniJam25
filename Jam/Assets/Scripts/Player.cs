@@ -32,10 +32,15 @@ public class Player : MonoBehaviour
         StartCoroutine(PassiveIncome());
     }
 
-    public void ChangeMoney(int amount)
+    private void ChangeMoney(int amount)
     {
         money += amount;
         UpdateUI();
+    }
+
+    public void TradeWithPlayer(EmailData emailData)
+    {
+        ChangeMoney(emailData.moneyChange);
     }
 
     public void ChangeFireRate(float amount)
@@ -56,8 +61,7 @@ public class Player : MonoBehaviour
 
     public void GetScam(int scamAmount)
     {
-        money -= scamAmount;
-        UpdateUI();
+        ChangeMoney(scamAmount);
         Debug.Log("You got scammed sucker");
     }
 

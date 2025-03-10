@@ -82,7 +82,7 @@ MonoBehaviour:
   moveSpeed: 5
   isGood: 1
   hasTraded: 0
-  moneyScam: 10
+  moneyScam: -10
 --- !u!135 &5600202356360645601
 SphereCollider:
   m_ObjectHideFlags: 0
