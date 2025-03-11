@@ -80,7 +80,10 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player")){
             Turret turret = other.gameObject.GetComponent<Turret>();
             turret.playerReference.GetScam(moneyScam);
-            attachedMail.GetComponent<EmailSwipe>().DestroyMail();
+            if(attachedMail != null)
+            {
+                attachedMail.GetComponent<EmailSwipe>().DestroyMail();
+            }            
             Destroy(gameObject);           
         }
         
