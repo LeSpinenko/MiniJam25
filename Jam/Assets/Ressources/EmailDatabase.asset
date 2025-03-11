@@ -13,28 +13,68 @@ MonoBehaviour:
   m_Name: EmailDatabase
   m_EditorClassIdentifier: 
   emails:
-  - title: Size Matter Kingdom
-    body: At size matter Kingdom, we think your ego should be restore.
+  - title: 'Archmage Vihaa Gra, Alchemist of Unmatched Potency '
+    body: "Subject: Arcane Enhancement for Your... Reach Esteemed Wielder of Might,
+      Through my years of tireless alchemical research, I have uncovered an elixir
+      capable of greatly extending one\u2019s reach\u2014both in battle and in life.
+      Many a warrior and marksman have sworn by its effects, claiming that their
+      strikes now extend far beyond their former limits. For a limited time, I offer
+      you a flask of this miraculous draught. Simply ingest the potion before battle,
+      and you shall find your range increased by 2 full spans. No side effects have
+      been reported\u2026 aside from an overwhelming sense of confidence. Shall you
+      seize this opportunity to enhance your prowess? Or shall you remain as you
+      are, perhaps... falling short when it matters most? Archmage Vihaa Gra  Purveyor
+      of Potency, Master of Mystical Extensions "
     isGood: 1
     hasTraded: 0
     moneyChange: 5
     fireRateChange: 0.2
-  - title: North VPN Republic
-    body: We propose you a partnership to promote our useless privacy service, we
-      pay good money
+  - title: Von Privassy, Royal Scribe of the Northern Kingdom
+    body: "Subject: Urgent Decree \u2013 Secure Thy Fortress! Most Esteemed Lord,
+      A most dire missive reaches thee this day! The shadowy agents of the Kingdom
+      of Spammers have taken great interest in thy lands. By decree of His Most Honorable
+      Majesty, Duke von Privassy, it is imperative that thou secureth thy fortifications
+      posthaste. For a meager sum of only 15 gold coins, our most skilled scribes
+      shall shroud thy castle\u2019s location in secrecy, weaving enchantments and
+      forging documents most cunning. Without such protection, thy enemies shall
+      surely descend upon thee like vultures to a fresh carcass. Dost thou accept
+      this prudent measure, or shall thou risk the wrath of unseen foes? The choice
+      is thine, but beware\u2014those who do not hide shall soon be found. May wisdom
+      guide thy quill,  Von Privassy, Royal Scribe of the Northern Kingdom "
     isGood: 1
     hasTraded: 0
     moneyChange: 20
     fireRateChange: 0
-  - title: Ulagudu Prince Legacy
-    body: The prince of Ulagudu has died, he has big money, if you want to inherit
-      just send 200$
+  - title: Prad Bitt, Renowned Troubadour of the Western Realm
+    body: 'Subject: A Proposal of Love and Shared Fortune Dearest Noble Lord/Lady,
+      I am Prad Bitt, the most celebrated troubadour of the Western Realm. Tales
+      of your grace and beauty have reached my ears, and I find myself enamored without
+      even having met you. My heart yearns to share with you the treasures I have
+      gathered during my travels. However, I am currently detained in a distant land,
+      ensnared by the schemes of the envious. To prove my love and devotion, I wish
+      to send you a chest filled with 830 gold coins. Yet, to facilitate this, I
+      require a modest sum of 83 gold coins to cover the costs of transport and customs.
+      By accepting this humble request, you open the door to an epic romance and
+      unparalleled prosperity. Together, we shall compose ballads of love and reign
+      over the hearts of all. Awaiting your passionate reply, Prad Bitt  Renowned
+      Troubadour of the Western Realm '
     isGood: 1
     hasTraded: 0
-    moneyChange: -30
+    moneyChange: -83
     fireRateChange: 0
-  - title: 'Cold water '
-    body: PP go small
+  - title: 'The Brotherhood of the Gallant Steed '
+    body: 'Subject: A Noble Cause for Our Retired Riders Honorable Lord/Lady, For
+      generations, the fearless knights and couriers of the realm have ridden tirelessly
+      into battle and beyond, delivering missives, waging war, and ensuring that
+      the lands remain connected. Yet, as the years pass, even the finest steeds
+      grow weary, and the bravest riders must lay down their reins. Thus, The Brotherhood
+      of the Gallant Steed humbly seeks your support in aiding these valiant souls
+      in their well-earned retirement. A modest contribution of 5 gold coins shall
+      provide them with warm lodgings, hearty meals, and well-deserved care for their
+      loyal mounts. Will you honor the riders who once served your cause, or shall
+      they be left to wander the roads, seeking alms in their twilight years? With
+      gratitude and steadfast duty,  Sir Garran Hoofmere  Grand Steward of the Brotherhood
+      of the Gallant Steed'
     isGood: 1
     hasTraded: 0
     moneyChange: 5

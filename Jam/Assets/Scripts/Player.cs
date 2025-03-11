@@ -11,8 +11,11 @@ public class Player : MonoBehaviour
     public float incomeCooldown = 2f;
     public int incomeAmount = 2;
 
-    public TextMeshProUGUI moneyText; // Updated to TextMeshProUGUI
-    public TextMeshProUGUI fireRateText; // Updated to TextMeshProUGUI
+    public TextMeshProUGUI moneyText; 
+    public TextMeshProUGUI fireRateText; 
+
+    public CanvaManager canvaManager; // Reference to CanvaManager
+    public int gameOverCanvasIndex = 2; // Index of the Game Over Canvas in the list
 
     private void Awake()
     {
@@ -36,6 +39,18 @@ public class Player : MonoBehaviour
     {
         money += amount;
         UpdateUI();
+
+        // Trigger Game Over when money reaches zero
+        if (money <= 0)
+        {
+            //money = 0; // Prevent negative values
+            Debug.Log("Game Over! No money left.");
+            canvaManager.SwitchToCanvas(gameOverCanvasIndex);
+            if (canvaManager != null)
+            {
+                canvaManager.SwitchToCanvas(gameOverCanvasIndex); // Activate Game Over Canvas
+            }
+        }
     }
 
     public void TradeWithPlayer(EmailData emailData)
@@ -46,7 +61,7 @@ public class Player : MonoBehaviour
     public void ChangeFireRate(float amount)
     {
         turretFireRate += amount;
-        turretFireRate = Mathf.Max(0.1f, turretFireRate); // Prevent fire rate from going negative
+        turretFireRate = Mathf.Max(0.1f, turretFireRate); 
         UpdateUI();
     }
 
@@ -75,3 +90,4 @@ public class Player : MonoBehaviour
         }
     }
 }
+

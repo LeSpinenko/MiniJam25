@@ -10,7 +10,7 @@ public class CanvaManager : MonoBehaviour
         // Ensure only the first canvas is active at the start
         if (canvasList.Count > 0)
         {
-            SelectCanvas(canvasList[1]);
+            SelectCanvas(canvasList[0]);
         }
     }
 
