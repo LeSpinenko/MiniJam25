@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI fireRateText; 
 
     public CanvaManager canvaManager; // Reference to CanvaManager
-    public int gameOverCanvasIndex = 2; // Index of the Game Over Canvas in the list
+    private int gameOverCanvasIndex = 2; // Index of the Game Over Canvas in the list
 
     private void Awake()
     {

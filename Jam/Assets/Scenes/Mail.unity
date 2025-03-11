@@ -1856,8 +1856,7 @@ MonoBehaviour:
   incomeAmount: 2
   moneyText: {fileID: 1363066935}
   fireRateText: {fileID: 0}
-  canvaManager: {fileID: 0}
-  gameOverCanvasIndex: 0
+  canvaManager: {fileID: 1712233572}
 --- !u!4 &1499502716
 Transform:
   m_ObjectHideFlags: 0
