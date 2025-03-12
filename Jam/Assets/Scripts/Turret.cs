@@ -6,7 +6,7 @@ public class Turret : MonoBehaviour
 {
     public GameObject[] enemies;
 
-    public Transform target;
+    public Transform castlePos;
     public Transform partToRotate;
 
     public float turnSpeed;
@@ -30,11 +30,11 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
+        if (castlePos == null)
         {
             return;
         }
-        RotateTurret();
+        //RotateTurret();
 
         if (fireCountdown <= 0f)
         {
@@ -75,11 +75,11 @@ public class Turret : MonoBehaviour
 
         if (nearestEnemy != null && shortestDistance <= range)
         {
-            target = nearestEnemy.transform;
+            castlePos = nearestEnemy.transform;
         }
         else
         {
-            target = null;
+            castlePos = null;
         }
     }
 
@@ -89,13 +89,13 @@ public class Turret : MonoBehaviour
         Bullet bullet = bulletGO.GetComponent<Bullet>();
         if (bullet != null)
         {
-            bullet.Seek(target);
+            bullet.Seek(castlePos);
         }
     }
 
     private void RotateTurret()
     {
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = castlePos.position - transform.position;
         Quaternion lookRot = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRot, Time.deltaTime * turnSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
