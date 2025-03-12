@@ -1920,7 +1920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803b82ed8a5693147a4e8ed83ac46c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2345374349926501634, guid: 708d57d60ff9c9a43ba99e535fe23f2b,
+  enemyPrefab: {fileID: 5286784012521677835, guid: fee0c6b1c570c3a4ea64a563c26c4aaf,
     type: 3}
   spawnCooldown: 3
   cooldownReducer: 0.1
@@ -2666,6 +2666,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1599262614466686725, guid: a2f4a16ddbaad0b49b9247982d40158d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.16
+      objectReference: {fileID: 0}
     - target: {fileID: 4903558148769229747, guid: a2f4a16ddbaad0b49b9247982d40158d,
         type: 3}
       propertyPath: m_LocalPosition.x

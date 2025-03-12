@@ -9,32 +9,49 @@ public class Enemy : MonoBehaviour
     public float maxHealth = 100f;
     //position du chateau
     private Transform castlePos;
-    public float moveSpeed = 2f;
+    private float moveSpeed = 2.5f;
+    private float runSpeed = 5f;
 
     public bool isGood = true;
     public bool hasTraded = false;
+    private bool isAttacking = false;
 
     public int moneyScam;
 
     private GameObject attachedMail;
+
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        //isEnemy = true;
+        animator = gameObject.GetComponent<Animator>();
+        animator.SetBool("isGood", true);
         health = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if((isGood && !hasTraded) || !isGood)
+        if(!isAttacking)
         {
-            MoveEnemiesToCastle();
+            if (!isGood)
+            {
+                moveSpeed = runSpeed;
+            }
+            if(!hasTraded)
+            {
+                MoveEnemiesToCastle();
+            }
+            else
+            {
+                MoveAway();
+            }
         }
-        else
+        else 
         {
-            MoveAway();
+            return;
         }
+
     }
 
     public void TakeDamage(float damage)
@@ -72,6 +89,9 @@ public class Enemy : MonoBehaviour
         isGood = _isGood;
         hasTraded = _hasTraded;
         attachedMail = _emailSwipe;
+        if(animator != null){
+            animator.SetBool("isGood", _isGood);
+        }
 
     }
 
@@ -83,9 +103,21 @@ public class Enemy : MonoBehaviour
             if(attachedMail != null)
             {
                 attachedMail.GetComponent<EmailSwipe>().DestroyMail();
-            }            
-            Destroy(gameObject);           
+            }
+            isAttacking = true;            
+            StartCoroutine(WaitAtCastle());                
         }
         
+    }
+
+    IEnumerator WaitAtCastle()
+    {
+        animator.SetBool("isAttacking", true);    
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("isAttacking", false);
+        isAttacking = false;
+        hasTraded = true;
+        isGood = false;
+        animator.SetBool("isGood", false);
     }
 }
