@@ -66,6 +66,10 @@ public class Enemy : MonoBehaviour
     public void Seek (Transform _target)
     {
         castlePos = _target;
+        Vector3 dir = castlePos.transform.position - transform.position;
+        if(dir.x < 0){
+            transform.GetChild(0).Rotate(0,180,0, Space.Self);
+        }
     }
 
     private void MoveEnemiesToCastle()
@@ -119,5 +123,7 @@ public class Enemy : MonoBehaviour
         hasTraded = true;
         isGood = false;
         animator.SetBool("isGood", false);
+        //transform.Rotate(0,180,0);
+        transform.GetChild(0).Rotate(0,180,0, Space.Self);
     }
 }

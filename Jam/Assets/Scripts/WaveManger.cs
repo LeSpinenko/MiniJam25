@@ -40,7 +40,7 @@ public class WaveManger : MonoBehaviour
 
     private Vector3 RandomSpawn()
     {
-        Vector3 randomSpawn = new Vector3(Random.Range(-1f,1f),0, Random.Range(-1f, 1f)).normalized * radius + castlePos.position;
+        Vector3 randomSpawn = new Vector3(Random.Range(-1f,1f),0, Random.Range(-1f, 0)).normalized * radius + castlePos.position;
         return randomSpawn;
     }
 

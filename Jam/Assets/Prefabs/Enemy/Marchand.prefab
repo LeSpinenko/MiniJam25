@@ -103,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6773319611477163292}
   - component: {fileID: 905681444924507769}
+  - component: {fileID: 3811232082123617981}
   m_Layer: 0
   m_Name: MarchandSprite
   m_TagString: Untagged
@@ -177,3 +178,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3811232082123617981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9012883931402647007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbae3ad850262324486f775befc86b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
