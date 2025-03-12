@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
 
     public CanvaManager canvaManager; // Reference to CanvaManager
     private int gameOverCanvasIndex = 2; // Index of the Game Over Canvas in the list
+
+    private bool isGamePaused = true;
 
     private void Awake()
     {
@@ -50,6 +53,7 @@ public class Player : MonoBehaviour
             {
                 canvaManager.SwitchToCanvas(gameOverCanvasIndex); // Activate Game Over Canvas
             }
+            PauseGame();
         }
     }
 
@@ -89,5 +93,29 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(incomeCooldown);
         }
     }
+
+    public void TogglePause()
+    {
+        isGamePaused = !isGamePaused;
+        Time.timeScale = isGamePaused ? 0 : 1;
+    }
+
+    public void PauseGame()
+    {
+        isGamePaused = true;
+        Time.timeScale = 0;
+    }
+
+    public void UnpauseGame()
+    {
+        isGamePaused = false;
+        Time.timeScale = 1;
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }
 

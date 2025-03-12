@@ -126,7 +126,11 @@ public class EmailSwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void DestroyMail()
     {
-        StartCoroutine(FadeAndDestroy());
+        if(this != null && isActiveAndEnabled)
+        {
+            StartCoroutine(FadeAndDestroy());
+        }
+        
     }
 
     private void ResetPosition()

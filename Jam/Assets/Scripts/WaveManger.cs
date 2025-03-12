@@ -21,9 +21,6 @@ public class WaveManger : MonoBehaviour
         spawnCooldown = 10f;
         minSpawnTime = 0.1f;
         cooldownReducer = 0.1f;
-
-        StartCoroutine(ExecuteEveryTenSeconds());
-        StartCoroutine(ChangeCoolDown());
     }
 
     // Update is called once per frame
@@ -66,6 +63,12 @@ public class WaveManger : MonoBehaviour
             }
             yield return new WaitForSeconds(10f);
         }
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(ExecuteEveryTenSeconds());
+        StartCoroutine(ChangeCoolDown());
     }
 
 
