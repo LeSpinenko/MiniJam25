@@ -21,11 +21,13 @@ public class Enemy : MonoBehaviour
     private GameObject attachedMail;
 
     private Animator animator;
+    public SpriteRenderer sprite;
     // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
         animator.SetBool("isGood", true);
+        
         health = maxHealth;
     }
 
@@ -66,9 +68,12 @@ public class Enemy : MonoBehaviour
     public void Seek (Transform _target)
     {
         castlePos = _target;
-        Vector3 dir = castlePos.transform.position - transform.position;
+
+        Camera camera = Camera.main;
+        Vector3 dir = camera.gameObject.transform.position - transform.position;
         if(dir.x < 0){
-            transform.GetChild(0).Rotate(0,180,0, Space.Self);
+            //transform.GetChild(0).Rotate(0,180,0, Space.Self);
+            sprite.flipX = true;
         }
     }
 
@@ -95,6 +100,10 @@ public class Enemy : MonoBehaviour
         attachedMail = _emailSwipe;
         if(animator != null){
             animator.SetBool("isGood", _isGood);
+        }
+        if(isGood && hasTraded)
+        {
+            sprite.flipX = !sprite.flipX;
         }
 
     }
@@ -124,6 +133,8 @@ public class Enemy : MonoBehaviour
         isGood = false;
         animator.SetBool("isGood", false);
         //transform.Rotate(0,180,0);
-        transform.GetChild(0).Rotate(0,180,0, Space.Self);
+        //transform.GetChild(0);
+        sprite.flipX = !sprite.flipX;
+        
     }
 }
